@@ -10,7 +10,7 @@ metadata:
   name: sonarr
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Management"
+    gateway.catalyst.io/category: media-management
     gateway.catalyst.io/order: "1"
 spec:
   displayName: Sonarr
@@ -37,7 +37,7 @@ metadata:
   name: radarr
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Management"
+    gateway.catalyst.io/category: media-management
     gateway.catalyst.io/order: "2"
 spec:
   displayName: Radarr
@@ -64,7 +64,7 @@ metadata:
   name: readarr
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Management"
+    gateway.catalyst.io/category: media-management
     gateway.catalyst.io/order: "3"
 spec:
   displayName: Readarr
@@ -91,7 +91,7 @@ metadata:
   name: prowlarr
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Management"
+    gateway.catalyst.io/category: media-management
     gateway.catalyst.io/order: "4"
 spec:
   displayName: Prowlarr
@@ -117,7 +117,7 @@ metadata:
   name: kometa
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Management"
+    gateway.catalyst.io/category: media-management
     gateway.catalyst.io/order: "5"
 spec:
   displayName: Kometa
@@ -136,7 +136,7 @@ metadata:
   name: posterizarr
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Management"
+    gateway.catalyst.io/category: media-management
     gateway.catalyst.io/order: "6"
 spec:
   displayName: Posterizarr
@@ -158,7 +158,7 @@ metadata:
   name: qbittorrent
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Download Clients"
+    gateway.catalyst.io/category: download-clients
     gateway.catalyst.io/order: "1"
 spec:
   displayName: qBittorrent
@@ -187,7 +187,7 @@ metadata:
   name: sabnzbd
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Download Clients"
+    gateway.catalyst.io/category: download-clients
     gateway.catalyst.io/order: "2"
 spec:
   displayName: SABnzbd
@@ -215,7 +215,7 @@ metadata:
   name: plex
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Servers"
+    gateway.catalyst.io/category: media-servers
     gateway.catalyst.io/order: "1"
 spec:
   displayName: Plex
@@ -242,7 +242,7 @@ metadata:
   name: jellyfin
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Servers"
+    gateway.catalyst.io/category: media-servers
     gateway.catalyst.io/order: "2"
 spec:
   displayName: Jellyfin
@@ -268,7 +268,7 @@ metadata:
   name: overseerr
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Servers"
+    gateway.catalyst.io/category: media-servers
     gateway.catalyst.io/order: "3"
 spec:
   displayName: Overseerr
@@ -294,7 +294,7 @@ metadata:
   name: tautulli
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Servers"
+    gateway.catalyst.io/category: media-servers
     gateway.catalyst.io/order: "4"
 spec:
   displayName: Tautulli
@@ -319,7 +319,7 @@ metadata:
   name: tdarr
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Servers"
+    gateway.catalyst.io/category: media-servers
     gateway.catalyst.io/order: "5"
 spec:
   displayName: Tdarr
@@ -343,7 +343,7 @@ metadata:
   name: open-webui
   namespace: catalyst-llm
   labels:
-    gateway.catalyst.io/category: "AI & LLM"
+    gateway.catalyst.io/category: ai-llm
     gateway.catalyst.io/order: "1"
 spec:
   displayName: Open WebUI
@@ -363,7 +363,7 @@ metadata:
   name: llm-proxy
   namespace: catalyst-llm
   labels:
-    gateway.catalyst.io/category: "AI & LLM"
+    gateway.catalyst.io/category: ai-llm
     gateway.catalyst.io/order: "2"
 spec:
   displayName: LLM Proxy
@@ -383,7 +383,7 @@ metadata:
   name: rabbitmq
   namespace: catalyst-llm
   labels:
-    gateway.catalyst.io/category: "AI & LLM"
+    gateway.catalyst.io/category: ai-llm
     gateway.catalyst.io/order: "3"
 spec:
   displayName: RabbitMQ
@@ -405,7 +405,7 @@ metadata:
   name: authentik
   namespace: authentik
   labels:
-    gateway.catalyst.io/category: "Infrastructure"
+    gateway.catalyst.io/category: infrastructure
     gateway.catalyst.io/order: "1"
 spec:
   displayName: Authentik
@@ -430,7 +430,7 @@ metadata:
   name: traefik
   namespace: traefik
   labels:
-    gateway.catalyst.io/category: "Infrastructure"
+    gateway.catalyst.io/category: infrastructure
     gateway.catalyst.io/order: "2"
 spec:
   displayName: Traefik
@@ -453,7 +453,7 @@ metadata:
   name: argocd
   namespace: argocd
   labels:
-    gateway.catalyst.io/category: "Infrastructure"
+    gateway.catalyst.io/category: infrastructure
     gateway.catalyst.io/order: "3"
 spec:
   displayName: ArgoCD
@@ -473,7 +473,7 @@ metadata:
   name: flux
   namespace: flux-system
   labels:
-    gateway.catalyst.io/category: "Infrastructure"
+    gateway.catalyst.io/category: infrastructure
     gateway.catalyst.io/order: "4"
 spec:
   displayName: Flux
@@ -492,7 +492,7 @@ metadata:
   name: nexus
   namespace: registry
   labels:
-    gateway.catalyst.io/category: "Infrastructure"
+    gateway.catalyst.io/category: infrastructure
     gateway.catalyst.io/order: "5"
 spec:
   displayName: Nexus
@@ -511,7 +511,7 @@ metadata:
   name: minio
   namespace: minio
   labels:
-    gateway.catalyst.io/category: "Infrastructure"
+    gateway.catalyst.io/category: infrastructure
     gateway.catalyst.io/order: "6"
 spec:
   displayName: MinIO
@@ -534,7 +534,7 @@ metadata:
   name: grafana
   namespace: monitoring
   labels:
-    gateway.catalyst.io/category: "Monitoring"
+    gateway.catalyst.io/category: monitoring
     gateway.catalyst.io/order: "1"
 spec:
   displayName: Grafana
@@ -564,7 +564,7 @@ metadata:
   name: mimir
   namespace: monitoring
   labels:
-    gateway.catalyst.io/category: "Monitoring"
+    gateway.catalyst.io/category: monitoring
     gateway.catalyst.io/order: "2"
 spec:
   displayName: Mimir
@@ -584,7 +584,7 @@ metadata:
   name: loki
   namespace: monitoring
   labels:
-    gateway.catalyst.io/category: "Monitoring"
+    gateway.catalyst.io/category: monitoring
     gateway.catalyst.io/order: "3"
 spec:
   displayName: Loki
@@ -604,7 +604,7 @@ metadata:
   name: tempo
   namespace: monitoring
   labels:
-    gateway.catalyst.io/category: "Monitoring"
+    gateway.catalyst.io/category: monitoring
     gateway.catalyst.io/order: "4"
 spec:
   displayName: Tempo
@@ -624,7 +624,7 @@ metadata:
   name: alloy
   namespace: monitoring
   labels:
-    gateway.catalyst.io/category: "Monitoring"
+    gateway.catalyst.io/category: monitoring
     gateway.catalyst.io/order: "5"
 spec:
   displayName: Alloy
@@ -644,7 +644,7 @@ metadata:
   name: hubble
   namespace: kube-system
   labels:
-    gateway.catalyst.io/category: "Monitoring"
+    gateway.catalyst.io/category: monitoring
     gateway.catalyst.io/order: "6"
 spec:
   displayName: Hubble
@@ -666,7 +666,7 @@ metadata:
   name: headlamp
   namespace: infra-testing
   labels:
-    gateway.catalyst.io/category: "Kubernetes"
+    gateway.catalyst.io/category: kubernetes
     gateway.catalyst.io/order: "1"
 spec:
   displayName: Headlamp
@@ -686,7 +686,7 @@ metadata:
   name: goldilocks
   namespace: infra-testing
   labels:
-    gateway.catalyst.io/category: "Kubernetes"
+    gateway.catalyst.io/category: kubernetes
     gateway.catalyst.io/order: "2"
 spec:
   displayName: Goldilocks
@@ -705,7 +705,7 @@ metadata:
   name: kube-ops-view
   namespace: infra-testing
   labels:
-    gateway.catalyst.io/category: "Kubernetes"
+    gateway.catalyst.io/category: kubernetes
     gateway.catalyst.io/order: "3"
 spec:
   displayName: Kube Ops View
@@ -724,7 +724,7 @@ metadata:
   name: bastion
   namespace: infra-testing
   labels:
-    gateway.catalyst.io/category: "Kubernetes"
+    gateway.catalyst.io/category: kubernetes
     gateway.catalyst.io/order: "4"
 spec:
   displayName: Bastion
@@ -746,7 +746,7 @@ metadata:
   name: vpn-gateway
   namespace: vpn-gateway
   labels:
-    gateway.catalyst.io/category: "VPN & Privacy"
+    gateway.catalyst.io/category: vpn-privacy
     gateway.catalyst.io/order: "1"
 spec:
   displayName: VPN Gateway
@@ -766,7 +766,7 @@ metadata:
   name: securechrome
   namespace: vpn-gateway
   labels:
-    gateway.catalyst.io/category: "VPN & Privacy"
+    gateway.catalyst.io/category: vpn-privacy
     gateway.catalyst.io/order: "2"
 spec:
   displayName: SecureChrome
@@ -785,7 +785,7 @@ metadata:
   name: securexng
   namespace: vpn-gateway
   labels:
-    gateway.catalyst.io/category: "VPN & Privacy"
+    gateway.catalyst.io/category: vpn-privacy
     gateway.catalyst.io/order: "3"
 spec:
   displayName: SecureXNG
@@ -807,7 +807,7 @@ metadata:
   name: home-assistant
   namespace: home-automation
   labels:
-    gateway.catalyst.io/category: "Home"
+    gateway.catalyst.io/category: home
     gateway.catalyst.io/order: "1"
 spec:
   displayName: Home Assistant

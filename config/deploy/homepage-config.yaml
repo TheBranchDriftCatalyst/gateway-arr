@@ -23,35 +23,44 @@ data:
     target: _blank
 
     # Category layout - order and display style
-    # Categories are defined in Widget CRD labels: gateway.catalyst.io/category
+    # Categories match Widget CRD labels: gateway.catalyst.io/category
     layout:
-      Media Management:
+      media-management:
         style: row
         columns: 3
-      Download Clients:
+        header: true
+      download-clients:
         style: row
         columns: 2
-      Media Servers:
+        header: true
+      media-servers:
         style: row
         columns: 3
-      AI & LLM:
+        header: true
+      ai-llm:
         style: row
         columns: 3
-      Infrastructure:
+        header: true
+      infrastructure:
         style: row
         columns: 3
-      Monitoring:
+        header: true
+      monitoring:
         style: row
         columns: 3
-      Kubernetes:
+        header: true
+      kubernetes:
         style: row
         columns: 4
-      VPN & Privacy:
+        header: true
+      vpn-privacy:
         style: row
         columns: 3
-      Home:
+        header: true
+      home:
         style: row
         columns: 2
+        header: true
 
     quicklaunch:
       searchDescriptions: true
