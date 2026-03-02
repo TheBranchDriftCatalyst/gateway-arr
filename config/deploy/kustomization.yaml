@@ -9,6 +9,7 @@ resources:
   - rbac.yaml
   - deployment.yaml
   - service.yaml
+  - homepage-config.yaml
   - homepage-deployment.yaml
   - homepage-service.yaml
 

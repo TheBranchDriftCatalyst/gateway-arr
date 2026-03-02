@@ -56,6 +56,7 @@ spec:
               mountPath: /app/config
       volumes:
         - name: config
-          emptyDir: {}
+          configMap:
+            name: gateway-arr-homepage-config
       imagePullSecrets:
         - name: ghcr-secret

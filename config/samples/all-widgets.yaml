@@ -1,0 +1,822 @@
+# Gateway-arr Widget CRDs - Complete Homelab Configuration
+# Matches existing Homepage services.yaml 1:1
+---
+# =============================================================================
+# MEDIA MANAGEMENT
+# =============================================================================
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: sonarr
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: "Media Management"
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: Sonarr
+  description: TV Series Management
+  icon: sonarr.png
+  href: http://sonarr.talos00
+  internalUrl: http://sonarr.media.svc.cluster.local:8989
+  siteMonitor:
+    enabled: true
+  widget:
+    type: sonarr
+    enableQueue: true
+    credentials:
+      apiKeySecretRef:
+        name: arr-api-keys
+        key: sonarr-key
+  nav:
+    showInOverlay: true
+    shortcut: "s"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: radarr
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: "Media Management"
+    gateway.catalyst.io/order: "2"
+spec:
+  displayName: Radarr
+  description: Movie Management
+  icon: radarr.png
+  href: http://radarr.talos00
+  internalUrl: http://radarr.media.svc.cluster.local:7878
+  siteMonitor:
+    enabled: true
+  widget:
+    type: radarr
+    enableQueue: true
+    credentials:
+      apiKeySecretRef:
+        name: arr-api-keys
+        key: radarr-key
+  nav:
+    showInOverlay: true
+    shortcut: "r"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: readarr
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: "Media Management"
+    gateway.catalyst.io/order: "3"
+spec:
+  displayName: Readarr
+  description: Book & Audiobook Management
+  icon: readarr.png
+  href: http://readarr.talos00
+  internalUrl: http://readarr.media.svc.cluster.local:8787
+  siteMonitor:
+    enabled: true
+  widget:
+    type: readarr
+    enableQueue: true
+    credentials:
+      apiKeySecretRef:
+        name: arr-api-keys
+        key: readarr-key
+  nav:
+    showInOverlay: true
+    shortcut: "b"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: prowlarr
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: "Media Management"
+    gateway.catalyst.io/order: "4"
+spec:
+  displayName: Prowlarr
+  description: Indexer Manager
+  icon: prowlarr.png
+  href: http://prowlarr.talos00
+  internalUrl: http://prowlarr.media.svc.cluster.local:9696
+  siteMonitor:
+    enabled: true
+  widget:
+    type: prowlarr
+    credentials:
+      apiKeySecretRef:
+        name: arr-api-keys
+        key: prowlarr-key
+  nav:
+    showInOverlay: true
+    shortcut: "p"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: kometa
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: "Media Management"
+    gateway.catalyst.io/order: "5"
+spec:
+  displayName: Kometa
+  description: Plex Meta Manager
+  icon: https://raw.githubusercontent.com/Kometa-Team/Kometa/master/docs/assets/logo-full.png
+  href: http://kometa.talos00
+  internalUrl: http://kometa.media.svc.cluster.local:80
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: posterizarr
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: "Media Management"
+    gateway.catalyst.io/order: "6"
+spec:
+  displayName: Posterizarr
+  description: Poster Overlay Generator
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/plex.png
+  href: http://posterizarr.talos00
+  internalUrl: http://posterizarr.media.svc.cluster.local:8000
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+# =============================================================================
+# DOWNLOAD CLIENTS
+# =============================================================================
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: qbittorrent
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: "Download Clients"
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: qBittorrent
+  description: Torrent Client (VPN Protected)
+  icon: qbittorrent.png
+  href: http://qbittorrent.talos00
+  internalUrl: http://qbittorrent.media.svc.cluster.local:8080
+  siteMonitor:
+    enabled: true
+  widget:
+    type: qbittorrent
+    credentials:
+      usernameSecretRef:
+        name: qbittorrent-credentials
+        key: username
+      passwordSecretRef:
+        name: qbittorrent-credentials
+        key: password
+  nav:
+    showInOverlay: true
+    shortcut: "q"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: sabnzbd
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: "Download Clients"
+    gateway.catalyst.io/order: "2"
+spec:
+  displayName: SABnzbd
+  description: Usenet Downloader
+  icon: sabnzbd.png
+  href: http://sabnzbd.talos00
+  internalUrl: http://sabnzbd.media.svc.cluster.local:8080
+  siteMonitor:
+    enabled: true
+  widget:
+    type: sabnzbd
+    credentials:
+      apiKeySecretRef:
+        name: arr-api-keys
+        key: sabnzbd-key
+  nav:
+    showInOverlay: true
+---
+# =============================================================================
+# MEDIA SERVERS
+# =============================================================================
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: plex
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: "Media Servers"
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: Plex
+  description: Primary Media Server
+  icon: plex.png
+  href: http://plex.talos00
+  internalUrl: http://plex.media.svc.cluster.local:32400
+  siteMonitor:
+    enabled: true
+    path: /web
+  widget:
+    type: plex
+    credentials:
+      apiKeySecretRef:
+        name: plex-credentials
+        key: token
+  nav:
+    showInOverlay: true
+    shortcut: "x"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: jellyfin
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: "Media Servers"
+    gateway.catalyst.io/order: "2"
+spec:
+  displayName: Jellyfin
+  description: Open Source Media Server
+  icon: jellyfin.png
+  href: http://jellyfin.talos00
+  internalUrl: http://jellyfin.media.svc.cluster.local:8096
+  siteMonitor:
+    enabled: true
+  widget:
+    type: jellyfin
+    credentials:
+      apiKeySecretRef:
+        name: jellyfin-credentials
+        key: api-key
+  nav:
+    showInOverlay: true
+    shortcut: "j"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: overseerr
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: "Media Servers"
+    gateway.catalyst.io/order: "3"
+spec:
+  displayName: Overseerr
+  description: Media Requests
+  icon: overseerr.png
+  href: http://overseerr.talos00
+  internalUrl: http://overseerr.media.svc.cluster.local:5055
+  siteMonitor:
+    enabled: true
+  widget:
+    type: overseerr
+    credentials:
+      apiKeySecretRef:
+        name: overseerr-credentials
+        key: api-key
+  nav:
+    showInOverlay: true
+    shortcut: "o"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: tautulli
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: "Media Servers"
+    gateway.catalyst.io/order: "4"
+spec:
+  displayName: Tautulli
+  description: Plex Analytics
+  icon: tautulli.png
+  href: http://tautulli.talos00
+  internalUrl: http://tautulli.media.svc.cluster.local:8181
+  siteMonitor:
+    enabled: true
+  widget:
+    type: tautulli
+    credentials:
+      apiKeySecretRef:
+        name: tautulli-credentials
+        key: api-key
+  nav:
+    showInOverlay: true
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: tdarr
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: "Media Servers"
+    gateway.catalyst.io/order: "5"
+spec:
+  displayName: Tdarr
+  description: Media Transcoding
+  icon: tdarr.png
+  href: http://tdarr.talos00
+  internalUrl: http://tdarr-server.tdarr.svc.cluster.local:8265
+  siteMonitor:
+    enabled: true
+  widget:
+    type: tdarr
+  nav:
+    showInOverlay: true
+---
+# =============================================================================
+# AI & LLM
+# =============================================================================
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: open-webui
+  namespace: catalyst-llm
+  labels:
+    gateway.catalyst.io/category: "AI & LLM"
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: Open WebUI
+  description: ChatGPT-style Interface
+  icon: https://raw.githubusercontent.com/open-webui/open-webui/main/static/favicon.png
+  href: http://chat.talos00
+  internalUrl: http://open-webui.catalyst-llm.svc.cluster.local:8080
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+    shortcut: "c"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: llm-proxy
+  namespace: catalyst-llm
+  labels:
+    gateway.catalyst.io/category: "AI & LLM"
+    gateway.catalyst.io/order: "2"
+spec:
+  displayName: LLM Proxy
+  description: GPU Worker Orchestration
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/ollama.png
+  href: http://llm.talos00/_/ui
+  internalUrl: http://llm-proxy.catalyst-llm.svc.cluster.local:8080
+  siteMonitor:
+    enabled: true
+    path: /health
+  nav:
+    showInOverlay: true
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: rabbitmq
+  namespace: catalyst-llm
+  labels:
+    gateway.catalyst.io/category: "AI & LLM"
+    gateway.catalyst.io/order: "3"
+spec:
+  displayName: RabbitMQ
+  description: Message Broker
+  icon: rabbitmq.png
+  href: http://rabbitmq.talos00
+  internalUrl: http://rabbitmq.catalyst-llm.svc.cluster.local:15672
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+# =============================================================================
+# INFRASTRUCTURE
+# =============================================================================
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: authentik
+  namespace: authentik
+  labels:
+    gateway.catalyst.io/category: "Infrastructure"
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: Authentik
+  description: Identity Provider (SSO)
+  icon: authentik.png
+  href: http://authentik.talos00
+  internalUrl: http://authentik-server.authentik.svc.cluster.local
+  siteMonitor:
+    enabled: true
+  widget:
+    type: authentik
+    credentials:
+      apiKeySecretRef:
+        name: authentik-credentials
+        key: api-key
+  nav:
+    showInOverlay: true
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: traefik
+  namespace: traefik
+  labels:
+    gateway.catalyst.io/category: "Infrastructure"
+    gateway.catalyst.io/order: "2"
+spec:
+  displayName: Traefik
+  description: Ingress Controller
+  icon: traefik.png
+  href: http://traefik.talos00/dashboard/
+  internalUrl: http://traefik-internal.traefik.svc.cluster.local:9000
+  siteMonitor:
+    enabled: true
+    path: /ping
+  widget:
+    type: traefik
+  nav:
+    showInOverlay: true
+    shortcut: "t"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: argocd
+  namespace: argocd
+  labels:
+    gateway.catalyst.io/category: "Infrastructure"
+    gateway.catalyst.io/order: "3"
+spec:
+  displayName: ArgoCD
+  description: GitOps Continuous Delivery
+  icon: argocd.png
+  href: http://argocd.talos00
+  internalUrl: http://argocd-server.argocd.svc.cluster.local
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+    shortcut: "a"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: flux
+  namespace: flux-system
+  labels:
+    gateway.catalyst.io/category: "Infrastructure"
+    gateway.catalyst.io/order: "4"
+spec:
+  displayName: Flux
+  description: GitOps Toolkit
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/flux-cd.png
+  href: http://grafana.talos00/d/flux-cluster/flux-cluster-stats
+  internalUrl: http://source-controller.flux-system.svc.cluster.local
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: nexus
+  namespace: registry
+  labels:
+    gateway.catalyst.io/category: "Infrastructure"
+    gateway.catalyst.io/order: "5"
+spec:
+  displayName: Nexus
+  description: Artifact Repository
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/nexus-sonatype.png
+  href: http://nexus.talos00
+  internalUrl: http://nexus.registry.svc.cluster.local:8081
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: minio
+  namespace: minio
+  labels:
+    gateway.catalyst.io/category: "Infrastructure"
+    gateway.catalyst.io/order: "6"
+spec:
+  displayName: MinIO
+  description: S3 Object Storage
+  icon: minio.png
+  href: http://minio.talos00
+  internalUrl: http://minio.minio.svc.cluster.local
+  siteMonitor:
+    enabled: true
+    path: /minio/health/live
+  nav:
+    showInOverlay: true
+---
+# =============================================================================
+# MONITORING
+# =============================================================================
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: grafana
+  namespace: monitoring
+  labels:
+    gateway.catalyst.io/category: "Monitoring"
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: Grafana
+  description: Dashboards & Visualization
+  icon: grafana.png
+  href: http://grafana.talos00
+  internalUrl: http://grafana-service.monitoring.svc.cluster.local:3000
+  siteMonitor:
+    enabled: true
+    path: /api/health
+  widget:
+    type: grafana
+    credentials:
+      usernameSecretRef:
+        name: grafana-credentials
+        key: username
+      passwordSecretRef:
+        name: grafana-credentials
+        key: password
+  nav:
+    showInOverlay: true
+    shortcut: "g"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: mimir
+  namespace: monitoring
+  labels:
+    gateway.catalyst.io/category: "Monitoring"
+    gateway.catalyst.io/order: "2"
+spec:
+  displayName: Mimir
+  description: Metrics Storage (30d retention)
+  icon: prometheus.png
+  href: http://grafana.talos00/explore?orgId=1&left=%7B%22datasource%22:%22mimir%22%7D
+  internalUrl: http://mimir-nginx.monitoring.svc.cluster.local
+  siteMonitor:
+    enabled: true
+    path: /ready
+  nav:
+    showInOverlay: true
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: loki
+  namespace: monitoring
+  labels:
+    gateway.catalyst.io/category: "Monitoring"
+    gateway.catalyst.io/order: "3"
+spec:
+  displayName: Loki
+  description: Log Aggregation
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/loki.png
+  href: http://grafana.talos00/explore?orgId=1&left=%7B%22datasource%22:%22loki%22%7D
+  internalUrl: http://loki-gateway.monitoring.svc.cluster.local
+  siteMonitor:
+    enabled: true
+    path: /ready
+  nav:
+    showInOverlay: true
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: tempo
+  namespace: monitoring
+  labels:
+    gateway.catalyst.io/category: "Monitoring"
+    gateway.catalyst.io/order: "4"
+spec:
+  displayName: Tempo
+  description: Distributed Tracing
+  icon: https://raw.githubusercontent.com/grafana/tempo/main/docs/sources/tempo/logo.png
+  href: http://grafana.talos00/explore?orgId=1&left=%7B%22datasource%22:%22tempo%22%7D
+  internalUrl: http://tempo.monitoring.svc.cluster.local:3100
+  siteMonitor:
+    enabled: true
+    path: /ready
+  nav:
+    showInOverlay: true
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: alloy
+  namespace: monitoring
+  labels:
+    gateway.catalyst.io/category: "Monitoring"
+    gateway.catalyst.io/order: "5"
+spec:
+  displayName: Alloy
+  description: OpenTelemetry Collector
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/grafana.png
+  href: http://alloy.talos00
+  internalUrl: http://alloy.monitoring.svc.cluster.local:12345
+  siteMonitor:
+    enabled: true
+    path: /-/ready
+  nav:
+    showInOverlay: true
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: hubble
+  namespace: kube-system
+  labels:
+    gateway.catalyst.io/category: "Monitoring"
+    gateway.catalyst.io/order: "6"
+spec:
+  displayName: Hubble
+  description: Network Observability
+  icon: https://raw.githubusercontent.com/cilium/hubble/main/Documentation/images/hubble_logo.png
+  href: http://hubble.talos00
+  internalUrl: http://hubble-ui.kube-system.svc.cluster.local
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+# =============================================================================
+# KUBERNETES
+# =============================================================================
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: headlamp
+  namespace: infra-testing
+  labels:
+    gateway.catalyst.io/category: "Kubernetes"
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: Headlamp
+  description: Kubernetes Dashboard
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/kubernetes-dashboard.png
+  href: http://headlamp.talos00
+  internalUrl: http://headlamp.infra-testing.svc.cluster.local
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+    shortcut: "k"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: goldilocks
+  namespace: infra-testing
+  labels:
+    gateway.catalyst.io/category: "Kubernetes"
+    gateway.catalyst.io/order: "2"
+spec:
+  displayName: Goldilocks
+  description: Resource Recommendations
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/goldilocks.png
+  href: http://goldilocks.talos00
+  internalUrl: http://goldilocks-dashboard.infra-testing.svc.cluster.local
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: kube-ops-view
+  namespace: infra-testing
+  labels:
+    gateway.catalyst.io/category: "Kubernetes"
+    gateway.catalyst.io/order: "3"
+spec:
+  displayName: Kube Ops View
+  description: Cluster Visualizer
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/kubernetes.png
+  href: http://kube-ops-view.talos00
+  internalUrl: http://kube-ops-view.infra-testing.svc.cluster.local
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: bastion
+  namespace: infra-testing
+  labels:
+    gateway.catalyst.io/category: "Kubernetes"
+    gateway.catalyst.io/order: "4"
+spec:
+  displayName: Bastion
+  description: Debug Shell Pod
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/terminal.png
+  href: http://bastion.talos00
+  internalUrl: http://bastion.infra-testing.svc.cluster.local
+  siteMonitor:
+    enabled: false
+  nav:
+    showInOverlay: true
+---
+# =============================================================================
+# VPN & PRIVACY
+# =============================================================================
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: vpn-gateway
+  namespace: vpn-gateway
+  labels:
+    gateway.catalyst.io/category: "VPN & Privacy"
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: VPN Gateway
+  description: ProtonVPN WireGuard
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/protonvpn.png
+  href: http://grafana.talos00/d/vpn-gateway
+  internalUrl: http://gluetun.vpn-gateway.svc.cluster.local:8000
+  siteMonitor:
+    enabled: true
+    path: /v1/vpn/status
+  nav:
+    showInOverlay: true
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: securechrome
+  namespace: vpn-gateway
+  labels:
+    gateway.catalyst.io/category: "VPN & Privacy"
+    gateway.catalyst.io/order: "2"
+spec:
+  displayName: SecureChrome
+  description: VPN Browser (Germany)
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/chrome.png
+  href: https://securechrome.talos00
+  internalUrl: http://secure-chrome.vpn-gateway.svc.cluster.local:6901
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: securexng
+  namespace: vpn-gateway
+  labels:
+    gateway.catalyst.io/category: "VPN & Privacy"
+    gateway.catalyst.io/order: "3"
+spec:
+  displayName: SecureXNG
+  description: Private Meta-Search
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/searxng.png
+  href: http://securexng.talos00
+  internalUrl: http://securexng.vpn-gateway.svc.cluster.local:8080
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+# =============================================================================
+# HOME
+# =============================================================================
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: home-assistant
+  namespace: home-automation
+  labels:
+    gateway.catalyst.io/category: "Home"
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: Home Assistant
+  description: Home Automation
+  icon: home-assistant.png
+  href: http://homeassistant.talos00
+  internalUrl: http://home-assistant.home-automation.svc.cluster.local:8123
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+    shortcut: "h"
