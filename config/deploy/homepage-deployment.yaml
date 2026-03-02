@@ -110,6 +110,19 @@ spec:
                   name: homepage-grafana-credentials
                   key: GRAFANA_PASS
                   optional: true
+            # qBittorrent credentials
+            - name: HOMEPAGE_VAR_MEDIA_QBITTORRENT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-qbittorrent-credentials
+                  key: QBITTORRENT_USER
+                  optional: true
+            - name: HOMEPAGE_VAR_MEDIA_QBITTORRENT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-qbittorrent-credentials
+                  key: QBITTORRENT_PASS
+                  optional: true
           ports:
             - name: http
               containerPort: 3000

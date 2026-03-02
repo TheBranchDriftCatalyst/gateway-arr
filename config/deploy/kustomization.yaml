@@ -12,6 +12,7 @@ resources:
   - homepage-config.yaml
   - homepage-deployment.yaml
   - homepage-service.yaml
+  - externalsecrets.yaml
 
 images:
   - name: gateway-arr
