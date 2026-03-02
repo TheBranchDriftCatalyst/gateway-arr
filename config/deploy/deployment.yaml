@@ -28,7 +28,7 @@ spec:
             - --metrics-bind-address=:8080
             - --health-probe-bind-address=:8081
             - --api-bind-address=:8082
-            - --target-namespace=media
+            - --target-namespace=gateway-arr
             - --configmap-name=homepage-services
           ports:
             - name: metrics

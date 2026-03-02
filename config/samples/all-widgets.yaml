@@ -25,8 +25,8 @@ spec:
     enableQueue: true
     credentials:
       apiKeySecretRef:
-        name: arr-api-keys
-        key: sonarr-key
+        name: arr-stack-secrets
+        key: sonarr-api-key
   nav:
     showInOverlay: true
     shortcut: "s"
@@ -52,38 +52,39 @@ spec:
     enableQueue: true
     credentials:
       apiKeySecretRef:
-        name: arr-api-keys
-        key: radarr-key
+        name: arr-stack-secrets
+        key: radarr-api-key
   nav:
     showInOverlay: true
     shortcut: "r"
----
-apiVersion: gateway.catalyst.io/v1alpha1
-kind: Widget
-metadata:
-  name: readarr
-  namespace: media
-  labels:
-    gateway.catalyst.io/category: media-management
-    gateway.catalyst.io/order: "3"
-spec:
-  displayName: Readarr
-  description: Book & Audiobook Management
-  icon: readarr.png
-  href: http://readarr.talos00
-  internalUrl: http://readarr.media.svc.cluster.local:8787
-  siteMonitor:
-    enabled: true
-  widget:
-    type: readarr
-    enableQueue: true
-    credentials:
-      apiKeySecretRef:
-        name: arr-api-keys
-        key: readarr-key
-  nav:
-    showInOverlay: true
-    shortcut: "b"
+## Readarr - DISABLED (service not deployed)
+# ---
+# apiVersion: gateway.catalyst.io/v1alpha1
+# kind: Widget
+# metadata:
+#   name: readarr
+#   namespace: media
+#   labels:
+#     gateway.catalyst.io/category: media-management
+#     gateway.catalyst.io/order: "3"
+# spec:
+#   displayName: Readarr
+#   description: Book & Audiobook Management
+#   icon: readarr.png
+#   href: http://readarr.talos00
+#   internalUrl: http://readarr.media.svc.cluster.local:8787
+#   siteMonitor:
+#     enabled: true
+#   widget:
+#     type: readarr
+#     enableQueue: true
+#     credentials:
+#       apiKeySecretRef:
+#         name: arr-stack-secrets
+#         key: readarr-api-key
+#   nav:
+#     showInOverlay: true
+#     shortcut: "b"
 ---
 apiVersion: gateway.catalyst.io/v1alpha1
 kind: Widget
@@ -105,30 +106,31 @@ spec:
     type: prowlarr
     credentials:
       apiKeySecretRef:
-        name: arr-api-keys
-        key: prowlarr-key
+        name: arr-stack-secrets
+        key: prowlarr-api-key
   nav:
     showInOverlay: true
     shortcut: "p"
----
-apiVersion: gateway.catalyst.io/v1alpha1
-kind: Widget
-metadata:
-  name: kometa
-  namespace: media
-  labels:
-    gateway.catalyst.io/category: media-management
-    gateway.catalyst.io/order: "5"
-spec:
-  displayName: Kometa
-  description: Plex Meta Manager
-  icon: https://raw.githubusercontent.com/Kometa-Team/Kometa/master/docs/assets/logo-full.png
-  href: http://kometa.talos00
-  internalUrl: http://kometa.media.svc.cluster.local:80
-  siteMonitor:
-    enabled: true
-  nav:
-    showInOverlay: true
+## Kometa - DISABLED (service not deployed)
+# ---
+# apiVersion: gateway.catalyst.io/v1alpha1
+# kind: Widget
+# metadata:
+#   name: kometa
+#   namespace: media
+#   labels:
+#     gateway.catalyst.io/category: media-management
+#     gateway.catalyst.io/order: "5"
+# spec:
+#   displayName: Kometa
+#   description: Plex Meta Manager
+#   icon: https://raw.githubusercontent.com/Kometa-Team/Kometa/master/docs/assets/logo-full.png
+#   href: http://kometa.talos00
+#   internalUrl: http://kometa.media.svc.cluster.local:80
+#   siteMonitor:
+#     enabled: true
+#   nav:
+#     showInOverlay: true
 ---
 apiVersion: gateway.catalyst.io/v1alpha1
 kind: Widget
@@ -201,8 +203,8 @@ spec:
     type: sabnzbd
     credentials:
       apiKeySecretRef:
-        name: arr-api-keys
-        key: sabnzbd-key
+        name: arr-stack-secrets
+        key: sabnzbd-api-key
   nav:
     showInOverlay: true
 ---
@@ -256,8 +258,8 @@ spec:
     type: jellyfin
     credentials:
       apiKeySecretRef:
-        name: jellyfin-credentials
-        key: api-key
+        name: arr-stack-secrets
+        key: jellyfin-api-key
   nav:
     showInOverlay: true
     shortcut: "j"
@@ -282,8 +284,8 @@ spec:
     type: overseerr
     credentials:
       apiKeySecretRef:
-        name: overseerr-credentials
-        key: api-key
+        name: arr-stack-secrets
+        key: overseerr-api-key
   nav:
     showInOverlay: true
     shortcut: "o"
@@ -304,12 +306,13 @@ spec:
   internalUrl: http://tautulli.media.svc.cluster.local:8181
   siteMonitor:
     enabled: true
-  widget:
-    type: tautulli
-    credentials:
-      apiKeySecretRef:
-        name: tautulli-credentials
-        key: api-key
+  # widget disabled - no API key configured
+  # widget:
+  #   type: tautulli
+  #   credentials:
+  #     apiKeySecretRef:
+  #       name: tautulli-credentials
+  #       key: api-key
   nav:
     showInOverlay: true
 ---
@@ -356,45 +359,47 @@ spec:
   nav:
     showInOverlay: true
     shortcut: "c"
----
-apiVersion: gateway.catalyst.io/v1alpha1
-kind: Widget
-metadata:
-  name: llm-proxy
-  namespace: catalyst-llm
-  labels:
-    gateway.catalyst.io/category: ai-llm
-    gateway.catalyst.io/order: "2"
-spec:
-  displayName: LLM Proxy
-  description: GPU Worker Orchestration
-  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/ollama.png
-  href: http://llm.talos00/_/ui
-  internalUrl: http://llm-proxy.catalyst-llm.svc.cluster.local:8080
-  siteMonitor:
-    enabled: true
-    path: /health
-  nav:
-    showInOverlay: true
----
-apiVersion: gateway.catalyst.io/v1alpha1
-kind: Widget
-metadata:
-  name: rabbitmq
-  namespace: catalyst-llm
-  labels:
-    gateway.catalyst.io/category: ai-llm
-    gateway.catalyst.io/order: "3"
-spec:
-  displayName: RabbitMQ
-  description: Message Broker
-  icon: rabbitmq.png
-  href: http://rabbitmq.talos00
-  internalUrl: http://rabbitmq.catalyst-llm.svc.cluster.local:15672
-  siteMonitor:
-    enabled: true
-  nav:
-    showInOverlay: true
+## LLM Proxy - DISABLED (service not deployed)
+# ---
+# apiVersion: gateway.catalyst.io/v1alpha1
+# kind: Widget
+# metadata:
+#   name: llm-proxy
+#   namespace: catalyst-llm
+#   labels:
+#     gateway.catalyst.io/category: ai-llm
+#     gateway.catalyst.io/order: "2"
+# spec:
+#   displayName: LLM Proxy
+#   description: GPU Worker Orchestration
+#   icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/ollama.png
+#   href: http://llm.talos00/_/ui
+#   internalUrl: http://llm-proxy.catalyst-llm.svc.cluster.local:8080
+#   siteMonitor:
+#     enabled: true
+#     path: /health
+#   nav:
+#     showInOverlay: true
+## RabbitMQ - DISABLED (service not deployed)
+# ---
+# apiVersion: gateway.catalyst.io/v1alpha1
+# kind: Widget
+# metadata:
+#   name: rabbitmq
+#   namespace: catalyst-llm
+#   labels:
+#     gateway.catalyst.io/category: ai-llm
+#     gateway.catalyst.io/order: "3"
+# spec:
+#   displayName: RabbitMQ
+#   description: Message Broker
+#   icon: rabbitmq.png
+#   href: http://rabbitmq.talos00
+#   internalUrl: http://rabbitmq.catalyst-llm.svc.cluster.local:15672
+#   siteMonitor:
+#     enabled: true
+#   nav:
+#     showInOverlay: true
 ---
 # =============================================================================
 # INFRASTRUCTURE
@@ -415,12 +420,13 @@ spec:
   internalUrl: http://authentik-server.authentik.svc.cluster.local
   siteMonitor:
     enabled: true
-  widget:
-    type: authentik
-    credentials:
-      apiKeySecretRef:
-        name: authentik-credentials
-        key: api-key
+  # widget disabled - no API key configured
+  # widget:
+  #   type: authentik
+  #   credentials:
+  #     apiKeySecretRef:
+  #       name: authentik-credentials
+  #       key: api-key
   nav:
     showInOverlay: true
 ---
@@ -591,7 +597,7 @@ spec:
   description: Log Aggregation
   icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/loki.png
   href: http://grafana.talos00/explore?orgId=1&left=%7B%22datasource%22:%22loki%22%7D
-  internalUrl: http://loki-gateway.monitoring.svc.cluster.local
+  internalUrl: http://loki.monitoring.svc.cluster.local:3100
   siteMonitor:
     enabled: true
     path: /ready
@@ -759,25 +765,26 @@ spec:
     path: /v1/vpn/status
   nav:
     showInOverlay: true
----
-apiVersion: gateway.catalyst.io/v1alpha1
-kind: Widget
-metadata:
-  name: securechrome
-  namespace: vpn-gateway
-  labels:
-    gateway.catalyst.io/category: vpn-privacy
-    gateway.catalyst.io/order: "2"
-spec:
-  displayName: SecureChrome
-  description: VPN Browser (Germany)
-  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/chrome.png
-  href: https://securechrome.talos00
-  internalUrl: http://secure-chrome.vpn-gateway.svc.cluster.local:6901
-  siteMonitor:
-    enabled: true
-  nav:
-    showInOverlay: true
+## SecureChrome - DISABLED (causes ECONNRESET crashes)
+# ---
+# apiVersion: gateway.catalyst.io/v1alpha1
+# kind: Widget
+# metadata:
+#   name: securechrome
+#   namespace: vpn-gateway
+#   labels:
+#     gateway.catalyst.io/category: vpn-privacy
+#     gateway.catalyst.io/order: "2"
+# spec:
+#   displayName: SecureChrome
+#   description: VPN Browser (Germany)
+#   icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/chrome.png
+#   href: https://securechrome.talos00
+#   internalUrl: http://secure-chrome.vpn-gateway.svc.cluster.local:6901
+#   siteMonitor:
+#     enabled: true
+#   nav:
+#     showInOverlay: true
 ---
 apiVersion: gateway.catalyst.io/v1alpha1
 kind: Widget
@@ -801,22 +808,23 @@ spec:
 # =============================================================================
 # HOME
 # =============================================================================
-apiVersion: gateway.catalyst.io/v1alpha1
-kind: Widget
-metadata:
-  name: home-assistant
-  namespace: home-automation
-  labels:
-    gateway.catalyst.io/category: home
-    gateway.catalyst.io/order: "1"
-spec:
-  displayName: Home Assistant
-  description: Home Automation
-  icon: home-assistant.png
-  href: http://homeassistant.talos00
-  internalUrl: http://home-assistant.home-automation.svc.cluster.local:8123
-  siteMonitor:
-    enabled: true
-  nav:
-    showInOverlay: true
-    shortcut: "h"
+## Home Assistant - DISABLED (service not deployed)
+# apiVersion: gateway.catalyst.io/v1alpha1
+# kind: Widget
+# metadata:
+#   name: home-assistant
+#   namespace: home-automation
+#   labels:
+#     gateway.catalyst.io/category: home
+#     gateway.catalyst.io/order: "1"
+# spec:
+#   displayName: Home Assistant
+#   description: Home Automation
+#   icon: home-assistant.png
+#   href: http://homeassistant.talos00
+#   internalUrl: http://home-assistant.home-automation.svc.cluster.local:8123
+#   siteMonitor:
+#     enabled: true
+#   nav:
+#     showInOverlay: true
+#     shortcut: "h"

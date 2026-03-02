@@ -21,6 +21,18 @@ func NewConfigMapBuilder() *ConfigMapBuilder {
 	return &ConfigMapBuilder{}
 }
 
+// slugToTitle converts a kebab-case slug to Title Case
+// e.g., "media-management" -> "Media Management"
+func slugToTitle(slug string) string {
+	words := strings.Split(slug, "-")
+	for i, word := range words {
+		if len(word) > 0 {
+			words[i] = strings.ToUpper(string(word[0])) + strings.ToLower(word[1:])
+		}
+	}
+	return strings.Join(words, " ")
+}
+
 // ServiceEntry represents a single service in Homepage format
 type ServiceEntry struct {
 	Name        string                 `json:"name,omitempty"`
@@ -43,8 +55,8 @@ func (b *ConfigMapBuilder) Build(ctx context.Context, c client.Client, categorie
 		categoryNames = append(categoryNames, name)
 	}
 
-	for _, categoryName := range categoryNames {
-		widgets := categories[categoryName]
+	for _, categorySlug := range categoryNames {
+		widgets := categories[categorySlug]
 		services := make([]map[string]interface{}, 0, len(widgets))
 
 		for _, widget := range widgets {
@@ -55,8 +67,10 @@ func (b *ConfigMapBuilder) Build(ctx context.Context, c client.Client, categorie
 			services = append(services, service)
 		}
 
+		// Convert slug to human-readable display name
+		displayName := slugToTitle(categorySlug)
 		categoryEntry := map[string][]map[string]interface{}{
-			categoryName: services,
+			displayName: services,
 		}
 		result = append(result, categoryEntry)
 	}

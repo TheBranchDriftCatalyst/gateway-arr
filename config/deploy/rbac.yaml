@@ -71,3 +71,82 @@ kind: ServiceAccount
 metadata:
   name: gateway-arr-controller-manager
   namespace: gateway-arr
+---
+# Homepage ServiceAccount for Kubernetes widget
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: gateway-arr-homepage
+  namespace: gateway-arr
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: gateway-arr-homepage-role
+rules:
+  # Core resources for kubernetes widget
+  - apiGroups:
+      - ""
+    resources:
+      - nodes
+      - pods
+      - namespaces
+      - services
+      - configmaps
+      - persistentvolumeclaims
+      - persistentvolumes
+    verbs:
+      - get
+      - list
+  # Metrics for resource usage
+  - apiGroups:
+      - metrics.k8s.io
+    resources:
+      - nodes
+      - pods
+    verbs:
+      - get
+      - list
+  # Ingress resources (networking.k8s.io)
+  - apiGroups:
+      - networking.k8s.io
+    resources:
+      - ingresses
+      - ingressclasses
+    verbs:
+      - get
+      - list
+  # Traefik IngressRoutes
+  - apiGroups:
+      - traefik.io
+      - traefik.containo.us
+    resources:
+      - ingressroutes
+      - middlewares
+    verbs:
+      - get
+      - list
+  # Apps for deployments/statefulsets
+  - apiGroups:
+      - apps
+    resources:
+      - deployments
+      - statefulsets
+      - daemonsets
+      - replicasets
+    verbs:
+      - get
+      - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: gateway-arr-homepage-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: gateway-arr-homepage-role
+subjects:
+  - kind: ServiceAccount
+    name: gateway-arr-homepage
+    namespace: gateway-arr
