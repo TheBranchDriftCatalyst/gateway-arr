@@ -18,6 +18,8 @@ spec:
         app.kubernetes.io/component: controller
     spec:
       serviceAccountName: gateway-arr-controller-manager
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: manager
           image: gateway-arr:latest
