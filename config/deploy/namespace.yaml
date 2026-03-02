@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gateway-arr
+  labels:
+    app.kubernetes.io/name: gateway-arr
+    app.kubernetes.io/part-of: gateway-arr

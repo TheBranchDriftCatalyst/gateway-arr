@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-arr-api
+  labels:
+    app.kubernetes.io/name: gateway-arr
+    app.kubernetes.io/component: api
+spec:
+  selector:
+    app.kubernetes.io/name: gateway-arr
+    app.kubernetes.io/component: controller
+  ports:
+    - name: api
+      port: 8082
+      targetPort: api
+      protocol: TCP
+    - name: metrics
+      port: 8080
+      targetPort: metrics
+      protocol: TCP
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: gateway-arr-api
+  labels:
+    app.kubernetes.io/name: gateway-arr
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`gateway-arr.talos00`)
+      kind: Rule
+      services:
+        - name: gateway-arr-api
+          port: 8082

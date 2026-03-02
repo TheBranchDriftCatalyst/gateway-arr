@@ -5,7 +5,7 @@ metadata:
   name: sonarr
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Management"
+    gateway.catalyst.io/category: media-management
     gateway.catalyst.io/order: "1"
 spec:
   displayName: Sonarr
@@ -33,7 +33,7 @@ metadata:
   name: radarr
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Management"
+    gateway.catalyst.io/category: media-management
     gateway.catalyst.io/order: "2"
 spec:
   displayName: Radarr
@@ -61,7 +61,7 @@ metadata:
   name: prowlarr
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Management"
+    gateway.catalyst.io/category: media-management
     gateway.catalyst.io/order: "3"
 spec:
   displayName: Prowlarr
@@ -87,7 +87,7 @@ metadata:
   name: plex
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Streaming"
+    gateway.catalyst.io/category: media-streaming
     gateway.catalyst.io/order: "1"
 spec:
   displayName: Plex
@@ -114,7 +114,7 @@ metadata:
   name: jellyfin
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Media Streaming"
+    gateway.catalyst.io/category: media-streaming
     gateway.catalyst.io/order: "2"
 spec:
   displayName: Jellyfin
@@ -140,7 +140,7 @@ metadata:
   name: qbittorrent
   namespace: media
   labels:
-    gateway.catalyst.io/category: "Downloads"
+    gateway.catalyst.io/category: downloads
     gateway.catalyst.io/order: "1"
 spec:
   displayName: qBittorrent
