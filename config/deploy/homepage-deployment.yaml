@@ -49,5 +49,11 @@ spec:
             requests:
               cpu: 50m
               memory: 128Mi
+          volumeMounts:
+            - name: config
+              mountPath: /app/config
+      volumes:
+        - name: config
+          emptyDir: {}
       imagePullSecrets:
         - name: ghcr-secret
