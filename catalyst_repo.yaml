@@ -1,0 +1,35 @@
+version: "0.1.1"
+name: "gateway-arr"
+description: "Kubernetes operator that aggregates Widget CRDs into Homepage-compatible configuration for unified *arr navigation"
+repo_url: "https://github.com/TheBranchDriftCatalyst/gateway-arr"
+
+status: "wip"
+
+tech_stack:
+  languages:
+    - "go"
+    - "typescript"
+  frameworks:
+    - "controller-runtime"
+    - "nextjs"
+    - "react"
+  tools:
+    - "kubernetes"
+    - "docker"
+    - "tailwindcss"
+
+groups:
+  - "homelab"
+  - "kubernetes"
+
+badges:
+  stars: true
+  issues: true
+  prs: true
+  license: true
+
+highlights:
+  - "Widget CRD for declarative service management"
+  - "Auto-generates Homepage services.yaml"
+  - "REST API + WebSocket for real-time updates"
+  - "Homepage fork for custom UI"

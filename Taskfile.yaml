@@ -1,0 +1,120 @@
+version: "3"
+
+vars:
+  IMG: gateway-arr:latest
+  TARGET_NS: homepage
+
+tasks:
+  default:
+    desc: Show available tasks
+    cmds:
+      - task --list
+
+  # Development
+  deps:
+    desc: Download Go dependencies
+    dir: .
+    cmds:
+      - go mod download
+      - go mod tidy
+
+  build:
+    desc: Build the operator binary
+    dir: .
+    cmds:
+      - go build -o bin/manager cmd/manager/main.go
+
+  run:
+    desc: Run the operator locally
+    dir: .
+    cmds:
+      - go run ./cmd/manager/main.go --target-namespace={{.TARGET_NS}}
+
+  fmt:
+    desc: Format Go code
+    cmds:
+      - go fmt ./...
+
+  vet:
+    desc: Run go vet
+    cmds:
+      - go vet ./...
+
+  test:
+    desc: Run tests
+    cmds:
+      - go test ./... -v
+
+  # Kubernetes
+  install-crd:
+    desc: Install CRDs into the cluster
+    cmds:
+      - kubectl apply -f config/crd/bases/
+
+  uninstall-crd:
+    desc: Remove CRDs from the cluster
+    cmds:
+      - kubectl delete -f config/crd/bases/
+
+  deploy:
+    desc: Deploy the operator to the cluster
+    cmds:
+      - kubectl apply -f config/crd/bases/
+      - kubectl apply -f config/rbac/
+      - kubectl apply -f config/manager/
+
+  undeploy:
+    desc: Remove the operator from the cluster
+    cmds:
+      - kubectl delete -f config/manager/ --ignore-not-found
+      - kubectl delete -f config/rbac/ --ignore-not-found
+      - kubectl delete -f config/crd/bases/ --ignore-not-found
+
+  deploy-samples:
+    desc: Deploy sample Widget resources
+    cmds:
+      - kubectl apply -f config/samples/
+
+  # Docker
+  docker-build:
+    desc: Build Docker image
+    cmds:
+      - docker build -t {{.IMG}} .
+
+  docker-push:
+    desc: Push Docker image
+    cmds:
+      - docker push {{.IMG}}
+
+  # UI
+  ui-install:
+    desc: Install UI dependencies
+    dir: ui
+    cmds:
+      - pnpm install
+
+  ui-dev:
+    desc: Run UI in development mode
+    dir: ui
+    cmds:
+      - pnpm dev
+
+  ui-build:
+    desc: Build UI for production
+    dir: ui
+    cmds:
+      - pnpm build
+
+  # All-in-one
+  dev:
+    desc: Start development environment (operator + UI)
+    deps: [install-crd]
+    cmds:
+      - task: run
+
+  all:
+    desc: Build everything
+    cmds:
+      - task: deps
+      - task: build
+      - task: docker-build

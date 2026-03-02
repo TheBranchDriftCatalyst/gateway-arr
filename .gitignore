@@ -1,0 +1,48 @@
+# Binaries
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Output of go coverage tool
+*.out
+
+# Go workspace file
+go.work
+
+# Dependency directories
+vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+dist/
+
+# UI node_modules (in subdirectory)
+ui/node_modules/
+ui/.next/
+ui/.pnpm-store/
+
+# Local config
+*.local
+.env
+.env.local
+.env.*.local
+
+# Kubeconfig
+kubeconfig
+*.kubeconfig

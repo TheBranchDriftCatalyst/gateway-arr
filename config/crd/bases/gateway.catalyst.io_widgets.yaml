@@ -1,0 +1,194 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: widgets.gateway.catalyst.io
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.14.0
+spec:
+  group: gateway.catalyst.io
+  names:
+    kind: Widget
+    listKind: WidgetList
+    plural: widgets
+    singular: widget
+    shortNames:
+      - wgt
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      additionalPrinterColumns:
+        - name: Display Name
+          type: string
+          jsonPath: .spec.displayName
+        - name: Href
+          type: string
+          jsonPath: .spec.href
+        - name: Healthy
+          type: boolean
+          jsonPath: .status.healthy
+        - name: Age
+          type: date
+          jsonPath: .metadata.creationTimestamp
+      schema:
+        openAPIV3Schema:
+          type: object
+          description: Widget is the Schema for the widgets API
+          properties:
+            apiVersion:
+              type: string
+            kind:
+              type: string
+            metadata:
+              type: object
+            spec:
+              type: object
+              required:
+                - displayName
+                - href
+              properties:
+                displayName:
+                  type: string
+                  description: Human-readable name shown in the UI
+                description:
+                  type: string
+                  description: Additional context about the service
+                icon:
+                  type: string
+                  description: Icon filename or full URL
+                href:
+                  type: string
+                  description: External/ingress URL for user access
+                internalUrl:
+                  type: string
+                  description: Cluster-internal service URL
+                siteMonitor:
+                  type: object
+                  description: Health monitoring configuration
+                  properties:
+                    enabled:
+                      type: boolean
+                    path:
+                      type: string
+                      description: Health check endpoint path
+                widget:
+                  type: object
+                  description: Homepage widget configuration
+                  required:
+                    - type
+                  properties:
+                    type:
+                      type: string
+                      description: Homepage widget type (e.g., sonarr, radarr, plex)
+                    enableQueue:
+                      type: boolean
+                      description: Enable queue display for *arr widgets
+                    fields:
+                      type: array
+                      items:
+                        type: string
+                      description: Widget fields to display
+                    credentials:
+                      type: object
+                      description: Credential references for widget API access
+                      properties:
+                        apiKeySecretRef:
+                          type: object
+                          description: Secret containing API key
+                          required:
+                            - name
+                            - key
+                          properties:
+                            name:
+                              type: string
+                            key:
+                              type: string
+                        usernameSecretRef:
+                          type: object
+                          description: Secret containing username
+                          required:
+                            - name
+                            - key
+                          properties:
+                            name:
+                              type: string
+                            key:
+                              type: string
+                        passwordSecretRef:
+                          type: object
+                          description: Secret containing password
+                          required:
+                            - name
+                            - key
+                          properties:
+                            name:
+                              type: string
+                            key:
+                              type: string
+                nav:
+                  type: object
+                  description: Navigation overlay configuration
+                  properties:
+                    showInOverlay:
+                      type: boolean
+                      description: Show widget in nav overlay
+                    shortcut:
+                      type: string
+                      description: Keyboard shortcut for quick access
+            status:
+              type: object
+              properties:
+                healthy:
+                  type: boolean
+                  description: Service is responding
+                lastChecked:
+                  type: string
+                  format: date-time
+                  description: Timestamp of last health check
+                homepageSynced:
+                  type: boolean
+                  description: Widget is synced to Homepage config
+                lastSynced:
+                  type: string
+                  format: date-time
+                  description: Timestamp of last Homepage sync
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - lastTransitionTime
+                      - message
+                      - reason
+                      - status
+                      - type
+                    properties:
+                      lastTransitionTime:
+                        type: string
+                        format: date-time
+                      message:
+                        type: string
+                        maxLength: 32768
+                      observedGeneration:
+                        type: integer
+                        format: int64
+                        minimum: 0
+                      reason:
+                        type: string
+                        maxLength: 1024
+                        minLength: 1
+                        pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      status:
+                        type: string
+                        enum:
+                          - "True"
+                          - "False"
+                          - Unknown
+                      type:
+                        type: string
+                        maxLength: 316
+                        pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
