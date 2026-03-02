@@ -17,6 +17,22 @@ spec:
         app.kubernetes.io/name: gateway-arr
         app.kubernetes.io/component: homepage
     spec:
+      # Init container copies config from ConfigMap to writable emptyDir
+      initContainers:
+        - name: copy-config
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              cp /config-source/* /app/config/
+              mkdir -p /app/config/logs
+              chmod -R 777 /app/config
+          volumeMounts:
+            - name: config-source
+              mountPath: /config-source
+            - name: config
+              mountPath: /app/config
       containers:
         - name: homepage
           image: ghcr.io/thebranchdriftcatalyst/gateway-arr-homepage:latest
@@ -55,8 +71,12 @@ spec:
             - name: config
               mountPath: /app/config
       volumes:
-        - name: config
+        # ConfigMap with settings, widgets, bookmarks
+        - name: config-source
           configMap:
             name: gateway-arr-homepage-config
+        # Writable config directory
+        - name: config
+          emptyDir: {}
       imagePullSecrets:
         - name: ghcr-secret
