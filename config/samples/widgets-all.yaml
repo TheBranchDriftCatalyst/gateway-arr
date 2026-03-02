@@ -1,0 +1,435 @@
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: sonarr
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: media-management
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: Sonarr
+  description: TV Series Management
+  icon: sonarr.png
+  href: http://sonarr.talos00
+  internalUrl: http://sonarr.media.svc.cluster.local:8989
+  siteMonitor:
+    enabled: true
+    path: /api/health
+  widget:
+    type: sonarr
+    enableQueue: true
+    credentials:
+      apiKeySecretRef:
+        name: sonarr-credentials
+        key: api-key
+  nav:
+    showInOverlay: true
+    shortcut: "s"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: radarr
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: media-management
+    gateway.catalyst.io/order: "2"
+spec:
+  displayName: Radarr
+  description: Movie Management
+  icon: radarr.png
+  href: http://radarr.talos00
+  internalUrl: http://radarr.media.svc.cluster.local:7878
+  siteMonitor:
+    enabled: true
+    path: /api/health
+  widget:
+    type: radarr
+    enableQueue: true
+    credentials:
+      apiKeySecretRef:
+        name: radarr-credentials
+        key: api-key
+  nav:
+    showInOverlay: true
+    shortcut: "r"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: prowlarr
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: media-management
+    gateway.catalyst.io/order: "3"
+spec:
+  displayName: Prowlarr
+  description: Indexer Manager
+  icon: prowlarr.png
+  href: http://prowlarr.talos00
+  internalUrl: http://prowlarr.media.svc.cluster.local:9696
+  siteMonitor:
+    enabled: true
+  widget:
+    type: prowlarr
+    credentials:
+      apiKeySecretRef:
+        name: prowlarr-credentials
+        key: api-key
+  nav:
+    showInOverlay: true
+    shortcut: "p"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: plex
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: media-streaming
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: Plex
+  description: Media Server
+  icon: plex.png
+  href: http://plex.talos00
+  internalUrl: http://plex.media.svc.cluster.local:32400
+  siteMonitor:
+    enabled: true
+    path: /identity
+  widget:
+    type: plex
+    credentials:
+      apiKeySecretRef:
+        name: plex-credentials
+        key: api-key
+  nav:
+    showInOverlay: true
+    shortcut: "x"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: jellyfin
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: media-streaming
+    gateway.catalyst.io/order: "2"
+spec:
+  displayName: Jellyfin
+  description: Open Source Media Server
+  icon: jellyfin.png
+  href: http://jellyfin.talos00
+  internalUrl: http://jellyfin.media.svc.cluster.local:8096
+  siteMonitor:
+    enabled: true
+  widget:
+    type: jellyfin
+    credentials:
+      apiKeySecretRef:
+        name: jellyfin-credentials
+        key: api-key
+  nav:
+    showInOverlay: true
+    shortcut: "j"
+---
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: qbittorrent
+  namespace: media
+  labels:
+    gateway.catalyst.io/category: downloads
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: qBittorrent
+  description: Torrent Client
+  icon: qbittorrent.png
+  href: http://qbittorrent.talos00
+  internalUrl: http://qbittorrent.media.svc.cluster.local:8080
+  siteMonitor:
+    enabled: true
+  widget:
+    type: qbittorrent
+    credentials:
+      usernameSecretRef:
+        name: qbittorrent-credentials
+        key: username
+      passwordSecretRef:
+        name: qbittorrent-credentials
+        key: password
+  nav:
+    showInOverlay: true
+    shortcut: "q"
+---
+# Home Assistant - Home Automation Hub
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: homeassistant
+  namespace: home-automation
+  labels:
+    gateway.catalyst.io/category: home-automation
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: Home Assistant
+  description: Smart Home Hub
+  icon: home-assistant.png
+  href: http://homeassistant.talos00
+  internalUrl: http://homeassistant.home-automation.svc.cluster.local:8123
+  siteMonitor:
+    enabled: true
+  widget:
+    type: homeassistant
+    credentials:
+      apiKeySecretRef:
+        name: homeassistant-credentials
+        key: api-key
+  nav:
+    showInOverlay: true
+    shortcut: "h"
+---
+# Immich - Photo Management
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: immich
+  namespace: media-private
+  labels:
+    gateway.catalyst.io/category: media-private
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: Immich
+  description: Photo & Video Backup
+  icon: immich.png
+  href: http://immich.talos00
+  internalUrl: http://immich-web.media-private.svc.cluster.local:2283
+  siteMonitor:
+    enabled: true
+  widget:
+    type: immich
+    credentials:
+      apiKeySecretRef:
+        name: immich-credentials
+        key: api-key
+  nav:
+    showInOverlay: true
+    shortcut: "i"
+---
+# Linkwarden - Bookmark Manager
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: linkwarden
+  namespace: home-automation
+  labels:
+    gateway.catalyst.io/category: productivity
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: Linkwarden
+  description: Bookmark Manager
+  icon: linkwarden.png
+  href: http://linkwarden.talos00
+  internalUrl: http://linkwarden.home-automation.svc.cluster.local:3000
+  siteMonitor:
+    enabled: true
+  widget:
+    type: linkwarden
+    credentials:
+      apiKeySecretRef:
+        name: linkwarden-credentials
+        key: api-key
+  nav:
+    showInOverlay: true
+    shortcut: "l"
+---
+# Frigate - NVR Camera System
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: frigate
+  namespace: scratch
+  labels:
+    gateway.catalyst.io/category: security
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: Frigate
+  description: AI-Powered NVR
+  icon: frigate.png
+  href: http://frigate.talos00
+  internalUrl: http://frigate.scratch.svc.cluster.local:5000
+  siteMonitor:
+    enabled: true
+  widget:
+    type: frigate
+  nav:
+    showInOverlay: true
+    shortcut: "f"
+---
+# Pterodactyl - Game Server Panel
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: pterodactyl
+  namespace: default
+  labels:
+    gateway.catalyst.io/category: gaming
+    gateway.catalyst.io/order: "1"
+spec:
+  displayName: Pterodactyl
+  description: Game Server Panel
+  icon: pterodactyl.png
+  href: http://pterodactyl.talos00
+  internalUrl: http://pterodactyl-panel.default.svc.cluster.local:80
+  siteMonitor:
+    enabled: true
+  widget:
+    type: pterodactyl
+    credentials:
+      apiKeySecretRef:
+        name: pterodactyl-credentials
+        key: api-key
+  nav:
+    showInOverlay: true
+    shortcut: "g"
+---
+# Guacamole - Remote Desktop Gateway
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: guacamole
+  namespace: gaming
+  labels:
+    gateway.catalyst.io/category: gaming
+    gateway.catalyst.io/order: "2"
+spec:
+  displayName: Guacamole
+  description: Remote Desktop Gateway
+  icon: guacamole.png
+  href: http://guacamole.talos00
+  internalUrl: http://guacamole.gaming.svc.cluster.local:8080
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+# Headlamp - Kubernetes Dashboard
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: headlamp
+  namespace: infra-control
+  labels:
+    gateway.catalyst.io/category: infrastructure
+    gateway.catalyst.io/order: "7"
+spec:
+  displayName: Headlamp
+  description: Kubernetes Dashboard
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/headlamp.png
+  href: http://headlamp.talos00
+  internalUrl: http://headlamp.infra-control.svc.cluster.local:80
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+# Goldilocks - Resource Recommendations
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: goldilocks
+  namespace: infra-control
+  labels:
+    gateway.catalyst.io/category: infrastructure
+    gateway.catalyst.io/order: "8"
+spec:
+  displayName: Goldilocks
+  description: Resource Recommendations
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/goldilocks.png
+  href: http://goldilocks.talos00
+  internalUrl: http://goldilocks-dashboard.infra-control.svc.cluster.local:80
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+# Zipline - File Sharing
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: zipline
+  namespace: zipline
+  labels:
+    gateway.catalyst.io/category: productivity
+    gateway.catalyst.io/order: "2"
+spec:
+  displayName: Zipline
+  description: File Sharing & Screenshots
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/zipline.png
+  href: http://zipline.talos00
+  internalUrl: http://zipline.zipline.svc.cluster.local:3000
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+# Ollama - Local LLM
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: ollama
+  namespace: catalyst-llm
+  labels:
+    gateway.catalyst.io/category: ai-llm
+    gateway.catalyst.io/order: "2"
+spec:
+  displayName: Ollama
+  description: Local LLM Runtime
+  icon: https://ollama.com/public/ollama.png
+  href: http://ollama.talos00
+  internalUrl: http://ollama.catalyst-llm.svc.cluster.local:11434
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+# LiteLLM - LLM Proxy
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: litellm
+  namespace: catalyst-llm
+  labels:
+    gateway.catalyst.io/category: ai-llm
+    gateway.catalyst.io/order: "3"
+spec:
+  displayName: LiteLLM
+  description: LLM Proxy & Router
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/openai.png
+  href: http://litellm.talos00
+  internalUrl: http://litellm.catalyst-llm.svc.cluster.local:4000
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
+---
+# Velero - Backup System
+apiVersion: gateway.catalyst.io/v1alpha1
+kind: Widget
+metadata:
+  name: velero
+  namespace: backup
+  labels:
+    gateway.catalyst.io/category: infrastructure
+    gateway.catalyst.io/order: "9"
+spec:
+  displayName: Velero
+  description: Kubernetes Backup
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/velero.png
+  href: http://grafana.talos00/d/velero/velero-backup-status
+  internalUrl: http://velero.backup.svc.cluster.local:8085
+  siteMonitor:
+    enabled: true
+  nav:
+    showInOverlay: true
