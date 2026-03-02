@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-arr-homepage
+  labels:
+    app.kubernetes.io/name: gateway-arr
+    app.kubernetes.io/component: homepage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: gateway-arr
+      app.kubernetes.io/component: homepage
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: gateway-arr
+        app.kubernetes.io/component: homepage
+    spec:
+      containers:
+        - name: homepage
+          image: ghcr.io/thebranchdriftcatalyst/gateway-arr-homepage:latest
+          imagePullPolicy: Always
+          env:
+            - name: GATEWAY_ARR_ENABLED
+              value: "true"
+            - name: GATEWAY_ARR_API
+              value: "http://gateway-arr-api.gateway-arr.svc.cluster.local:8082"
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /api/healthcheck
+              port: 3000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /api/healthcheck
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 50m
+              memory: 128Mi
+      imagePullSecrets:
+        - name: ghcr-secret

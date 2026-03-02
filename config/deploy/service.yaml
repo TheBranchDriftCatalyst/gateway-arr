@@ -29,7 +29,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`gateway-arr.talos00`)
+    - match: Host(`gateway-api.talos00`)
       kind: Rule
       services:
         - name: gateway-arr-api

@@ -9,8 +9,13 @@ resources:
   - rbac.yaml
   - deployment.yaml
   - service.yaml
+  - homepage-deployment.yaml
+  - homepage-service.yaml
 
 images:
   - name: gateway-arr
     newName: ghcr.io/thebranchdriftcatalyst/gateway-arr
+    newTag: latest
+  - name: ghcr.io/thebranchdriftcatalyst/gateway-arr-homepage
+    newName: ghcr.io/thebranchdriftcatalyst/gateway-arr-homepage
     newTag: latest
