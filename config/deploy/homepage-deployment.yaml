@@ -110,6 +110,13 @@ spec:
                   name: homepage-grafana-credentials
                   key: GRAFANA_PASS
                   optional: true
+            # Tautulli credentials
+            - name: HOMEPAGE_VAR_MEDIA_TAUTULLI_APIKEY
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-tautulli-credentials
+                  key: TAUTULLI_APIKEY
+                  optional: true
             # qBittorrent credentials
             - name: HOMEPAGE_VAR_MEDIA_QBITTORRENT_USERNAME
               valueFrom:
